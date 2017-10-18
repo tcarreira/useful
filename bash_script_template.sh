@@ -1,10 +1,14 @@
 #!/bin/bash
-set -euo pipefail
-# set -x
+# This template may be used in any bash script file.
+# It enables SIG handling (update respective functions)
+# It enables logging with levels (LOG functions)
+
+set -euo pipefail # Unofficial Bash Strict Mode
 IFS=$'\n\t'
+# set -x  # uncomment this line for dev-debug purposes
 
 
-### Initial variables and constants 
+### Initial variables and constants  (optional)
 __VERBOSE=7 # 7=DEBUG
 
 
@@ -12,6 +16,9 @@ __VERBOSE=7 # 7=DEBUG
 
 
 ############################ LOG Functions ############################
+# eg:
+# .info "info message"
+# .error "error message"
 declare -A LOG_LEVELS
 LOG_LEVELS=([0]="EMERG" [1]="ALERT" [2]="CRIT" [3]="ERROR" [4]="WARNING" [5]="NOTICE" [6]="INFO" [7]="DEBUG")
 function .log () {
@@ -71,5 +78,3 @@ _debug_mode_toggle() {
 trap _debug_mode_toggle SIGUSR1
 
 ###############################################################################
-
-
