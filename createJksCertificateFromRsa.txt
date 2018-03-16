@@ -1,0 +1,7 @@
+HOW TO CREATE A .jks CERTIFICATE FILE
+
+cat server.pem  server.key > server_combined.pem
+openssl pkcs12 -export -in server_combined.pem -out server.pkcs12
+keytool -importkeystore -srckeystore server.pkcs12 -srcstoretype pkcs12 -destkeystore server.jks
+
+
